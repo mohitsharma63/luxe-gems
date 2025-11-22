@@ -52,110 +52,81 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Banner Section - Luxurious Full-Width */}
-      <section className="relative w-full overflow-hidden">
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-light-gold/5 z-0" />
-        
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-light-gold/5 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10" />
-
-        <div className="relative z-10 max-w-[120rem] mx-auto px-6 lg:px-10 py-20 lg:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col justify-center"
-            >
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="mb-6"
-              >
-                <Badge className="bg-light-gold/20 text-primary border border-light-gold/40 mb-4">
-                  <Sparkles className="h-3 w-3 mr-2" />
-                  Luxury Jewelry Collection
-                </Badge>
-              </motion.div>
-
-              <h1 className="text-5xl lg:text-7xl font-heading font-bold text-foreground mb-6 leading-tight">
-                Timeless Elegance Meets Modern Luxury
-              </h1>
-              
-              <p className="text-lg lg:text-xl font-paragraph text-dark-grey mb-8 leading-relaxed max-w-xl">
-                Discover our exquisite collection of handcrafted jewelry pieces. Each creation tells a story of precision, artistry, and uncompromising quality.
-              </p>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 mb-8">
-                <div>
-                  <p className="text-2xl font-heading font-bold text-primary">500+</p>
-                  <p className="font-paragraph text-sm text-dark-grey">Unique Pieces</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-heading font-bold text-primary">25+</p>
-                  <p className="font-paragraph text-sm text-dark-grey">Master Artisans</p>
-                </div>
-                <div>
-                  <p className="text-2xl font-heading font-bold text-primary">100%</p>
-                  <p className="font-paragraph text-sm text-dark-grey">Authentic</p>
-                </div>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/catalog" className="flex-1 sm:flex-none">
-                  <Button className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg font-medium">
-                    Explore Collection
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                {!isAuthenticated && (
-                  <Button 
-                    onClick={actions.login}
-                    variant="outline"
-                    className="w-full sm:w-auto border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 text-lg font-medium"
-                  >
-                    Sign In
-                  </Button>
-                )}
-              </div>
-            </motion.div>
-
-            {/* Right Hero Image */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative hidden lg:flex justify-center items-center"
-            >
-              <div className="relative w-full max-w-md">
-                {/* Decorative frame */}
-                <div className="absolute -inset-6 bg-gradient-to-br from-light-gold/30 to-primary/20 rounded-2xl blur-2xl" />
-                
-                <Image
-                  src="https://static.wixstatic.com/media/7d1d95_75026b5977334031b668fad2bccd3f47~mv2.png?originWidth=448&originHeight=448"
-                  alt="Luxury jewelry collection showcase"
-                  className="relative w-full aspect-square object-cover rounded-2xl shadow-2xl"
-                  width={500}
-                />
-                
-                {/* Floating badge */}
-                <motion.div
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute -bottom-4 -right-4 bg-white rounded-full p-4 shadow-xl border border-light-gold/30"
-                >
-                  <Crown className="h-6 w-6 text-light-gold" />
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
+      {/* Hero Banner Section - Full-Bleed Luxury Image */}
+      <section className="relative w-full h-screen max-h-[800px] overflow-hidden flex items-center justify-center">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://static.wixstatic.com/media/7d1d95_8f3e9c7d2e1a4b5c6d7e8f9g0h1i2j3k~mv2.png"
+            alt="Luxury diamond and gold jewelry collection banner"
+            className="w-full h-full object-cover"
+            width={1920}
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20" />
         </div>
+
+        {/* Content Overlay */}
+        <div className="relative z-10 max-w-[120rem] mx-auto px-6 lg:px-10 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="max-w-2xl"
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="mb-6"
+            >
+              <Badge className="bg-light-gold/80 text-white border border-light-gold/60 mb-4">
+                <Sparkles className="h-3 w-3 mr-2" />
+                Luxury Jewelry Collection
+              </Badge>
+            </motion.div>
+
+            <h1 className="text-6xl lg:text-8xl font-heading font-bold text-white mb-6 leading-tight drop-shadow-lg">
+              Timeless Elegance
+            </h1>
+            
+            <p className="text-xl lg:text-2xl font-paragraph text-white/90 mb-8 leading-relaxed max-w-xl drop-shadow-md">
+              Discover our exquisite collection of handcrafted diamond and gold jewelry. Each piece is a masterpiece of precision and artistry.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link to="/catalog" className="flex-1 sm:flex-none">
+                <Button className="w-full sm:w-auto bg-light-gold hover:bg-light-gold/90 text-white px-8 py-4 text-lg font-medium shadow-lg">
+                  Explore Collection
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              {!isAuthenticated && (
+                <Button 
+                  onClick={actions.login}
+                  className="w-full sm:w-auto bg-white/20 hover:bg-white/30 text-white border border-white/40 px-8 py-4 text-lg font-medium backdrop-blur-sm"
+                >
+                  Sign In
+                </Button>
+              )}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        >
+          <div className="text-white/60 text-center">
+            <p className="text-sm font-paragraph mb-2">Scroll to explore</p>
+            <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
+              <div className="w-1 h-2 bg-white/60 rounded-full mt-2 animate-pulse" />
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Featured Products with 3D Viewer Section */}
@@ -167,6 +138,10 @@ export default function HomePage() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
+          <Badge className="bg-light-gold/20 text-primary border border-light-gold/40 mb-4 inline-block">
+            <Gem className="h-3 w-3 mr-2 inline" />
+            Premium Selection
+          </Badge>
           <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">
             Featured Collection
           </h2>
@@ -341,7 +316,7 @@ export default function HomePage() {
       </section>
 
       {/* Product Grid Showcase */}
-      <section className="py-20 lg:py-32 px-6 lg:px-10 bg-white">
+      <section className="py-20 lg:py-32 px-6 lg:px-10 bg-gradient-to-br from-white via-background to-white">
         <div className="max-w-[120rem] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -350,11 +325,15 @@ export default function HomePage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">
+            <Badge className="bg-light-gold/20 text-primary border border-light-gold/40 mb-4 inline-block">
+              <Crown className="h-3 w-3 mr-2 inline" />
               Curated Selection
+            </Badge>
+            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">
+              Premium Diamond & Gold Collection
             </h2>
             <p className="text-lg font-paragraph text-dark-grey max-w-2xl mx-auto">
-              Explore our complete collection of premium jewelry pieces, each carefully selected for quality and design.
+              Explore our complete collection of premium jewelry pieces, each carefully selected for quality, design, and timeless elegance.
             </p>
           </motion.div>
 
@@ -401,7 +380,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* Why Choose Us Section - Enhanced */}
       <section className="py-20 lg:py-32 px-6 lg:px-10 max-w-[120rem] mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -410,11 +389,15 @@ export default function HomePage() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
+          <Badge className="bg-light-gold/20 text-primary border border-light-gold/40 mb-4 inline-block">
+            <Shield className="h-3 w-3 mr-2 inline" />
+            Why LuxeJewels
+          </Badge>
           <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">
-            Why Choose LuxeJewels
+            The LuxeJewels Difference
           </h2>
           <p className="text-lg font-paragraph text-dark-grey max-w-2xl mx-auto">
-            Experience the difference of working with a platform dedicated to luxury and excellence.
+            Experience the difference of working with a platform dedicated to luxury, authenticity, and excellence.
           </p>
         </motion.div>
 
@@ -424,16 +407,16 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="bg-white p-8 rounded-lg border border-secondary/20 hover:border-primary/50 transition-colors"
+            className="bg-white p-8 rounded-lg border border-secondary/20 hover:border-light-gold/50 transition-all hover:shadow-lg"
           >
-            <div className="bg-primary/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-              <Sparkles className="h-7 w-7 text-primary" />
+            <div className="bg-light-gold/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+              <Sparkles className="h-7 w-7 text-light-gold" />
             </div>
             <h3 className="text-xl font-heading font-semibold text-foreground mb-3">
               Premium Quality
             </h3>
             <p className="font-paragraph text-dark-grey">
-              Every piece is carefully curated and authenticated to ensure the highest standards of craftsmanship.
+              Every piece is carefully curated and authenticated to ensure the highest standards of craftsmanship and materials.
             </p>
           </motion.div>
 
@@ -442,16 +425,16 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-white p-8 rounded-lg border border-secondary/20 hover:border-primary/50 transition-colors"
+            className="bg-white p-8 rounded-lg border border-secondary/20 hover:border-light-gold/50 transition-all hover:shadow-lg"
           >
-            <div className="bg-primary/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-              <Shield className="h-7 w-7 text-primary" />
+            <div className="bg-light-gold/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+              <Shield className="h-7 w-7 text-light-gold" />
             </div>
             <h3 className="text-xl font-heading font-semibold text-foreground mb-3">
               Secure & Verified
             </h3>
             <p className="font-paragraph text-dark-grey">
-              All sellers and products undergo rigorous verification to guarantee authenticity and trust.
+              All sellers and products undergo rigorous verification to guarantee authenticity, trust, and complete peace of mind.
             </p>
           </motion.div>
 
@@ -460,39 +443,43 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="bg-white p-8 rounded-lg border border-secondary/20 hover:border-primary/50 transition-colors"
+            className="bg-white p-8 rounded-lg border border-secondary/20 hover:border-light-gold/50 transition-all hover:shadow-lg"
           >
-            <div className="bg-primary/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
-              <Gem className="h-7 w-7 text-primary" />
+            <div className="bg-light-gold/10 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+              <Gem className="h-7 w-7 text-light-gold" />
             </div>
             <h3 className="text-xl font-heading font-semibold text-foreground mb-3">
               Expert Curation
             </h3>
             <p className="font-paragraph text-dark-grey">
-              Our team of jewelry experts hand-selects each piece to meet our exacting standards.
+              Our team of jewelry experts hand-selects each piece to meet our exacting standards of beauty and value.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 lg:py-32 px-6 lg:px-10 bg-gradient-to-br from-primary/10 to-light-gold/10">
-        <div className="max-w-[100rem] mx-auto text-center">
+      {/* CTA Section - Premium Luxury */}
+      <section className="py-20 lg:py-32 px-6 lg:px-10 bg-gradient-to-br from-primary via-primary/90 to-light-gold/20 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-light-gold/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+
+        <div className="max-w-[100rem] mx-auto text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-foreground mb-6">
+            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-white mb-6">
               Ready to Discover Your Perfect Piece?
             </h2>
-            <p className="text-lg font-paragraph text-dark-grey mb-8 max-w-2xl mx-auto">
-              Join our community of jewelry enthusiasts and find the perfect addition to your collection.
+            <p className="text-lg font-paragraph text-white/90 mb-8 max-w-2xl mx-auto">
+              Join our community of jewelry enthusiasts and find the perfect addition to your collection. Experience luxury like never before.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/catalog">
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg">
+                <Button className="bg-light-gold hover:bg-light-gold/90 text-white px-8 py-4 text-lg shadow-lg">
                   Shop Now
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -500,8 +487,7 @@ export default function HomePage() {
               {!isAuthenticated && (
                 <Button 
                   onClick={actions.login}
-                  variant="outline"
-                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 text-lg"
+                  className="bg-white/20 hover:bg-white/30 text-white border border-white/40 px-8 py-4 text-lg backdrop-blur-sm"
                 >
                   Create Account
                 </Button>
