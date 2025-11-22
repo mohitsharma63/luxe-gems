@@ -57,7 +57,7 @@ export default function HomePage() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://static.wixstatic.com/media/7d1d95_8f3e9c7d2e1a4b5c6d7e8f9g0h1i2j3k~mv2.png"
+            src="https://static.wixstatic.com/media/7d1d95_0f768bebb08e415f99cf4ee0436d7fb4~mv2.png"
             alt="Luxury diamond and gold jewelry collection banner"
             className="w-full h-full object-cover"
             width={1920}
