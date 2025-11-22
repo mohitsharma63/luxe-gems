@@ -124,7 +124,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Banner Section - Full-Bleed Luxury Image with 3D Depth */}
+      {/* Hero Banner Section - Full-Bleed with 3D Jewelry Showcase */}
       <section ref={heroRef} className="relative w-full h-screen max-h-[800px] overflow-hidden flex items-center justify-center perspective">
         {/* Background Image with Overlay and 3D Transform */}
         <div className="absolute inset-0 z-0">
@@ -157,8 +157,132 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Content Overlay with 3D Depth */}
-        <div className="relative z-10 max-w-[120rem] mx-auto px-6 lg:px-10 w-full">
+        {/* 3D Jewelry Showcase - Right Side */}
+        <motion.div
+          initial={{ opacity: 0, x: 100, rotateY: 45 }}
+          animate={{ opacity: 1, x: 0, rotateY: 0 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+          className="absolute right-0 top-1/2 transform -translate-y-1/2 w-1/2 h-full flex items-center justify-center z-5 hidden lg:flex"
+          style={{ perspective: '1200px' }}
+        >
+          <motion.div
+            animate={{
+              rotateY: [0, 360],
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+            className="relative w-96 h-96"
+            style={{ perspective: '1000px' }}
+          >
+            {/* 3D Jewelry Product Display */}
+            <motion.div
+              className="relative w-full h-full"
+              animate={{
+                rotateX: mousePosition.y * 10,
+                rotateY: mousePosition.x * 10,
+              }}
+              transition={{ type: 'spring', stiffness: 100, damping: 30 }}
+            >
+              {/* Outer glow effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-light-gold/30 via-transparent to-light-gold/20 rounded-full blur-3xl"
+                animate={{
+                  opacity: [0.5, 1, 0.5],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+
+              {/* 3D Jewelry Image Container */}
+              <motion.div
+                className="relative w-full h-full rounded-2xl overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+              >
+                {/* Gradient background for depth */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-light-gold/10 to-primary/20" />
+                
+                {/* Featured Jewelry Image with 3D effect */}
+                <Image
+                  src="https://static.wixstatic.com/media/7d1d95_37ecb9363ca2454a937c354eca8a8b69~mv2.png?originWidth=576&originHeight=576"
+                  alt="3D Jewelry Showcase - Diamond Ring"
+                  className="w-full h-full object-cover"
+                  width={400}
+                />
+
+                {/* 3D Light reflection overlay */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent"
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
+
+                {/* Rotating border glow */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-light-gold via-white to-light-gold bg-clip-border"
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  style={{
+                    backgroundSize: '200% 200%',
+                  }}
+                />
+              </motion.div>
+
+              {/* 3D Floating particles around jewelry */}
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-2 h-2 bg-light-gold rounded-full"
+                  animate={{
+                    x: [0, Math.cos((i / 6) * Math.PI * 2) * 120, 0],
+                    y: [0, Math.sin((i / 6) * Math.PI * 2) * 120, 0],
+                    opacity: [0, 1, 0],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                  }}
+                  style={{
+                    left: '50%',
+                    top: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                />
+              ))}
+            </motion.div>
+
+            {/* Product Info Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 bg-white/95 backdrop-blur-sm rounded-lg p-4 w-80 shadow-2xl"
+            >
+              <h3 className="font-heading font-bold text-foreground mb-1">
+                Eternal Diamond Solitaire
+              </h3>
+              <p className="font-paragraph text-sm text-dark-grey mb-3">
+                2.5-carat brilliant-cut diamond in 18K white gold
+              </p>
+              <motion.div
+                className="flex items-center justify-between"
+                whileHover={{ scale: 1.05 }}
+              >
+                <span className="font-heading font-bold text-primary text-lg">$12,500</span>
+                <Badge className="bg-light-gold text-white">
+                  <Crown className="h-3 w-3 mr-1" />
+                  VIP
+                </Badge>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+        {/* Content Overlay with 3D Depth - Left Side */}
+        <div className="relative z-10 max-w-[120rem] mx-auto px-6 lg:px-10 w-full lg:w-1/2">
           <motion.div
             initial={{ opacity: 0, y: 30, z: -50 }}
             animate={{ opacity: 1, y: 0, z: 0 }}
