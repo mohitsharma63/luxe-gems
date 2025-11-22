@@ -13,13 +13,13 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { ArrowRight, Shield, Users, Gem, Sparkles, Crown, Eye } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// Static curated featured products
+// Static curated featured products with luxury jewelry images
 const STATIC_FEATURED_PRODUCTS: JewelryProducts[] = [
   {
     _id: 'featured-1',
     productName: 'Eternal Diamond Solitaire Ring',
     description: 'A timeless masterpiece featuring a 2.5-carat brilliant-cut diamond set in 18K white gold. This iconic ring represents the pinnacle of elegance and sophistication.',
-    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_a1b2c3d4e5f6g7h8i9j0k1l2~mv2.png?originWidth=600&originHeight=600',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_37ecb9363ca2454a937c354eca8a8b69~mv2.png?originWidth=576&originHeight=576',
     price: 12500,
     sku: 'RING-ETERNAL-001',
     moderationStatus: 'approved',
@@ -32,7 +32,7 @@ const STATIC_FEATURED_PRODUCTS: JewelryProducts[] = [
     _id: 'featured-2',
     productName: 'Luxe Gold Pendant Necklace',
     description: 'An exquisite 18K yellow gold pendant adorned with a stunning sapphire center stone. Each piece is hand-crafted by master artisans with meticulous attention to detail.',
-    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_b2c3d4e5f6g7h8i9j0k1l2m3~mv2.png?originWidth=600&originHeight=600',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_258633440e7141d3be1e976859faf980~mv2.png?originWidth=576&originHeight=576',
     price: 8750,
     sku: 'NECKLACE-LUXE-001',
     moderationStatus: 'approved',
@@ -45,7 +45,7 @@ const STATIC_FEATURED_PRODUCTS: JewelryProducts[] = [
     _id: 'featured-3',
     productName: 'Diamond Tennis Bracelet',
     description: 'A stunning tennis bracelet featuring 15 carats of brilliant-cut diamonds set in platinum. The perfect accessory for any occasion, radiating unparalleled brilliance.',
-    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_c3d4e5f6g7h8i9j0k1l2m3n4~mv2.png?originWidth=600&originHeight=600',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_70af8f0eff30451a900230e65980e72b~mv2.png?originWidth=576&originHeight=576',
     price: 18900,
     sku: 'BRACELET-TENNIS-001',
     moderationStatus: 'approved',
@@ -58,7 +58,7 @@ const STATIC_FEATURED_PRODUCTS: JewelryProducts[] = [
     _id: 'featured-4',
     productName: 'Emerald & Diamond Earrings',
     description: 'Elegant drop earrings featuring 2-carat emeralds surrounded by a halo of brilliant diamonds. A sophisticated choice for the discerning collector.',
-    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_d4e5f6g7h8i9j0k1l2m3n4o5~mv2.png?originWidth=600&originHeight=600',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_b5933206ec6540b38f200367a1b03d2f~mv2.png?originWidth=576&originHeight=576',
     price: 9200,
     sku: 'EARRINGS-EMERALD-001',
     moderationStatus: 'approved',
@@ -71,7 +71,7 @@ const STATIC_FEATURED_PRODUCTS: JewelryProducts[] = [
     _id: 'featured-5',
     productName: 'Vintage Gold Brooch',
     description: 'A stunning vintage-inspired brooch crafted in 14K rose gold with intricate filigree detailing. A timeless accent piece for any jewelry collection.',
-    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_e5f6g7h8i9j0k1l2m3n4o5p6~mv2.png?originWidth=600&originHeight=600',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_3b11be887ef445bba06f6148e531d50b~mv2.png?originWidth=576&originHeight=576',
     price: 4500,
     sku: 'BROOCH-VINTAGE-001',
     moderationStatus: 'approved',
@@ -84,7 +84,7 @@ const STATIC_FEATURED_PRODUCTS: JewelryProducts[] = [
     _id: 'featured-6',
     productName: 'Pearl & Diamond Tiara',
     description: 'An exquisite tiara featuring lustrous South Sea pearls and brilliant diamonds set in 18K white gold. Perfect for special occasions and celebrations.',
-    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_f6g7h8i9j0k1l2m3n4o5p6q7~mv2.png?originWidth=600&originHeight=600',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_40452589591745bba7918b9169939eb7~mv2.png?originWidth=576&originHeight=576',
     price: 22000,
     sku: 'TIARA-PEARL-001',
     moderationStatus: 'approved',
