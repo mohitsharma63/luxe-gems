@@ -15,6 +15,21 @@ type SortOption = 'name' | 'price-low' | 'price-high' | 'newest';
 // Static product data
 const STATIC_PRODUCTS: JewelryProducts[] = [
   {
+    _id: '0',
+    productName: 'Luxe Signature Collection Ring',
+    description: 'An exquisite masterpiece from our exclusive Luxe Signature Collection. This stunning ring features premium craftsmanship with a sophisticated design that captures the essence of timeless elegance. Perfect for those who appreciate the finer things in life.',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_5792c8ec05614bdd92060a8d7be610e7~mv2.png',
+    price: 3450,
+    sku: 'LSC-000',
+    threeDModelUrl: '',
+    moderationStatus: 'approved',
+    isVipItem: true,
+    isVisibleToWholesalers: true,
+    isVisibleToRetailers: true,
+    isVisibleToPublic: true,
+    _createdDate: new Date('2025-11-22'),
+  },
+  {
     _id: '1',
     productName: 'Elegant Diamond Ring',
     description: 'A stunning 18K white gold ring featuring a brilliant-cut diamond with intricate side detailing. Perfect for engagements or special occasions.',
