@@ -1,24 +1,145 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { BaseCrudService } from '@/integrations';
 import { JewelryProducts } from '@/entities';
 import { ProductCard } from '@/components/ui/product-card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { LoadingSpinner } from '@/components/ui/loading-spinner';
 import { Search, Filter, Grid, List, SlidersHorizontal } from 'lucide-react';
 import { useMember } from '@/integrations';
 
 type ViewMode = 'grid' | 'list';
 type SortOption = 'name' | 'price-low' | 'price-high' | 'newest';
 
+// Static product data
+const STATIC_PRODUCTS: JewelryProducts[] = [
+  {
+    _id: '1',
+    productName: 'Elegant Diamond Ring',
+    description: 'A stunning 18K white gold ring featuring a brilliant-cut diamond with intricate side detailing. Perfect for engagements or special occasions.',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_61229f9b860e40c7a31a6254d22aff18~mv2.png',
+    price: 2850,
+    sku: 'EDR-001',
+    threeDModelUrl: '',
+    moderationStatus: 'approved',
+    isVipItem: true,
+    isVisibleToWholesalers: true,
+    isVisibleToRetailers: true,
+    isVisibleToPublic: true,
+    _createdDate: new Date('2025-11-20'),
+  },
+  {
+    _id: '2',
+    productName: 'Pearl Pendant Necklace',
+    description: 'Luxurious South Sea pearl pendant suspended from a delicate 14K gold chain. Timeless elegance meets modern sophistication.',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_49590f3908264ea695fc3feca2dc0f5b~mv2.png?originWidth=384&originHeight=384',
+    price: 1450,
+    sku: 'PPN-002',
+    threeDModelUrl: '',
+    moderationStatus: 'approved',
+    isVipItem: false,
+    isVisibleToWholesalers: true,
+    isVisibleToRetailers: true,
+    isVisibleToPublic: true,
+    _createdDate: new Date('2025-11-19'),
+  },
+  {
+    _id: '3',
+    productName: 'Sapphire Cocktail Ring',
+    description: 'Bold and beautiful 14K white gold ring with a vibrant blue sapphire center stone surrounded by sparkling diamonds.',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_299201ee86a743f7b410f7662ae85401~mv2.png?originWidth=384&originHeight=384',
+    price: 3200,
+    sku: 'SCR-003',
+    threeDModelUrl: '',
+    moderationStatus: 'approved',
+    isVipItem: true,
+    isVisibleToWholesalers: true,
+    isVisibleToRetailers: true,
+    isVisibleToPublic: true,
+    _createdDate: new Date('2025-11-18'),
+  },
+  {
+    _id: '4',
+    productName: 'Gold Hoop Earrings',
+    description: 'Classic 18K gold hoop earrings with a polished finish. A versatile piece that complements any style.',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_9d97b50cfcba40af85d7c1b3290f5cf0~mv2.png?originWidth=384&originHeight=384',
+    price: 850,
+    sku: 'GHE-004',
+    threeDModelUrl: '',
+    moderationStatus: 'approved',
+    isVipItem: false,
+    isVisibleToWholesalers: true,
+    isVisibleToRetailers: true,
+    isVisibleToPublic: true,
+    _createdDate: new Date('2025-11-17'),
+  },
+  {
+    _id: '5',
+    productName: 'Emerald Bracelet',
+    description: 'Exquisite 14K white gold bracelet featuring stunning emerald stones with diamond accents. A statement piece for the discerning collector.',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_403354145aa44f30b725a719d1e24749~mv2.png?originWidth=384&originHeight=384',
+    price: 4500,
+    sku: 'EMB-005',
+    threeDModelUrl: '',
+    moderationStatus: 'approved',
+    isVipItem: true,
+    isVisibleToWholesalers: true,
+    isVisibleToRetailers: true,
+    isVisibleToPublic: true,
+    _createdDate: new Date('2025-11-16'),
+  },
+  {
+    _id: '6',
+    productName: 'Diamond Stud Earrings',
+    description: 'Timeless 18K white gold diamond studs. Each stone is carefully selected for brilliance and clarity.',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_2a82dc2014214971bad650e333f9ed3f~mv2.png?originWidth=384&originHeight=384',
+    price: 1950,
+    sku: 'DSE-006',
+    threeDModelUrl: '',
+    moderationStatus: 'approved',
+    isVipItem: false,
+    isVisibleToWholesalers: true,
+    isVisibleToRetailers: true,
+    isVisibleToPublic: true,
+    _createdDate: new Date('2025-11-15'),
+  },
+  {
+    _id: '7',
+    productName: 'Ruby Vintage Ring',
+    description: 'Inspired by vintage designs, this 14K gold ring features a deep red ruby surrounded by intricate filigree work.',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_3d94317e6329408aa7201b70f3889287~mv2.png?originWidth=384&originHeight=384',
+    price: 2200,
+    sku: 'RVR-007',
+    threeDModelUrl: '',
+    moderationStatus: 'approved',
+    isVipItem: false,
+    isVisibleToWholesalers: true,
+    isVisibleToRetailers: true,
+    isVisibleToPublic: true,
+    _createdDate: new Date('2025-11-14'),
+  },
+  {
+    _id: '8',
+    productName: 'Platinum Diamond Bracelet',
+    description: 'Ultra-luxurious platinum bracelet with premium diamonds. The ultimate symbol of elegance and sophistication.',
+    mainProductImage: 'https://static.wixstatic.com/media/7d1d95_30fb2186e6d842c48f9228c490ee0bfc~mv2.png?originWidth=384&originHeight=384',
+    price: 5800,
+    sku: 'PDB-008',
+    threeDModelUrl: '',
+    moderationStatus: 'approved',
+    isVipItem: true,
+    isVisibleToWholesalers: true,
+    isVisibleToRetailers: true,
+    isVisibleToPublic: true,
+    _createdDate: new Date('2025-11-13'),
+  },
+];
+
 export default function CatalogPage() {
   const { member, isAuthenticated } = useMember();
-  const [products, setProducts] = useState<JewelryProducts[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<JewelryProducts[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<JewelryProducts[]>(STATIC_PRODUCTS);
+  const [filteredProducts, setFilteredProducts] = useState<JewelryProducts[]>(STATIC_PRODUCTS);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<SortOption>('newest');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
@@ -26,36 +147,8 @@ export default function CatalogPage() {
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  useEffect(() => {
     filterAndSortProducts();
   }, [products, searchTerm, sortBy, priceRange]);
-
-  const fetchProducts = async () => {
-    try {
-      setLoading(true);
-      const { items } = await BaseCrudService.getAll<JewelryProducts>('jewelryproducts');
-      
-      // Filter products based on user role and visibility settings
-      const visibleProducts = items.filter(product => {
-        if (!isAuthenticated) {
-          return product.isVisibleToPublic;
-        }
-        
-        // For authenticated users, show products based on their role
-        // In a real app, you'd get the user's role from their profile
-        return product.isVisibleToPublic || product.isVisibleToRetailers || product.isVisibleToWholesalers;
-      });
-      
-      setProducts(visibleProducts);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const filterAndSortProducts = () => {
     let filtered = [...products];
@@ -99,14 +192,6 @@ export default function CatalogPage() {
     setPriceRange({ min: 0, max: 10000 });
     setSortBy('newest');
   };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <LoadingSpinner />
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-background">
